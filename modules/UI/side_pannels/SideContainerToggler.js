@@ -16,11 +16,18 @@ const SideContainerToggler = {
     init(eventEmitter) {
         this.eventEmitter = eventEmitter;
 
+        // We may not have a side toolbar container for example in
+        // filmstrip-only mode.
+        const sideToolbarContainer
+            = document.getElementById("sideToolbarContainer");
+
+        if (!sideToolbarContainer)
+            return;
+
         // Adds a listener for the animation end event that would take care
         // of hiding all internal containers when the extendedToolbarPanel is
         // closed.
-        document.getElementById("sideToolbarContainer")
-            .addEventListener("animationend", function(e) {
+        sideToolbarContainer.addEventListener("animationend", function(e) {
                 if(e.animationName === "slideOutExt")
                     $("#sideToolbarContainer").children().each(function() {
                         if ($(this).hasClass("show"))
