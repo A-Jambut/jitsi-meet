@@ -233,21 +233,23 @@ export function showSIPCallButton(show: boolean): Function {
  */
 export function showToolbox(timeout: number = 0): Object {
     return (dispatch: Dispatch<*>, getState: Function) => {
-        if (interfaceConfig.filmStripOnly) {
-            return;
-        }
-
         const state = getState();
         const { timeoutMS, visible } = state['features/toolbox'];
 
         if (!visible) {
             dispatch(setToolboxVisible(true));
             dispatch(setSubjectSlideIn(true));
-            dispatch(
-                setToolboxTimeout(
-                    () => dispatch(hideToolbox()),
-                    timeout || timeoutMS));
-            dispatch(setToolboxTimeoutMS(interfaceConfig.TOOLBAR_TIMEOUT));
+
+            // We set a timeout if the alwaysVisible property isn't set to true.
+            const { alwaysVisible } = state['features/toolbox'];
+
+            if (!alwaysVisible) {
+                dispatch(
+                    setToolboxTimeout(
+                        () => dispatch(hideToolbox()),
+                        timeout || timeoutMS));
+                dispatch(setToolboxTimeoutMS(interfaceConfig.TOOLBAR_TIMEOUT));
+            }
         }
     };
 }

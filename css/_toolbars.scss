@@ -19,9 +19,9 @@
     vertical-align: middle;
 }
 
-/**
-* Toolbar button styles.
-*/
+ /**
+  * Toolbar button styles.
+  */
 .button {
     color: #FFFFFF;
     cursor: pointer;
@@ -187,8 +187,31 @@
     }
 
     /**
-     * Toolbar specific round badge.
+     * Styles the toolbar in a film strip only mode.
      */
+    &_filmstrip-only {
+        border-radius: 3px;
+        bottom: 0;
+        display: inline-block;
+        height: auto;
+        position: absolute;
+        right: 0;
+        width: $defaultToolbarSize;
+
+        .button:first-child {
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+        }
+        .button:last-child {
+            border-bottom-right-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+    }
+
+
+  /**
+   * Toolbar specific round badge.
+   */
     .badge-round {
         bottom: 9px;
         position: absolute;

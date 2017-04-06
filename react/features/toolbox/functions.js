@@ -167,6 +167,8 @@ export function getDefaultToolboxButtons(): Object {
 
     if (typeof interfaceConfig !== 'undefined'
             && interfaceConfig.TOOLBAR_BUTTONS) {
+        const _filmStripOnly = interfaceConfig.filmStripOnly;
+
         toolbarButtons
             = interfaceConfig.TOOLBAR_BUTTONS.reduce(
                 (acc, buttonName) => {
@@ -176,7 +178,12 @@ export function getDefaultToolboxButtons(): Object {
                         const place = _getToolbarButtonPlace(buttonName);
 
                         button.buttonName = buttonName;
-                        acc[place].set(buttonName, button);
+
+                        // In filmstrip-only mode we only add a button if it's
+                        // film-strip only enabled.
+                        if (!_filmStripOnly || button.filmStripOnlyEnabled) {
+                            acc[place].set(buttonName, button);
+                        }
                     }
 
                     return acc;
@@ -210,7 +217,9 @@ function _getToolbarButtonPlace(btn) {
  * @private
  */
 export function getToolbarClassNames(props: Object) {
-    const primaryToolbarClassNames = [ 'toolbar_primary' ];
+    const primaryToolbarClassNames = interfaceConfig.filmStripOnly
+        ? [ 'toolbar_filmstrip-only' ]
+        : [ 'toolbar_primary' ];
     const secondaryToolbarClassNames = [ 'toolbar_secondary' ];
 
     if (props._visible) {

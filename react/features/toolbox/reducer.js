@@ -207,6 +207,14 @@ function _setButton(state, { button, buttonName }): Object {
         ...button
     };
 
+    // In filmstrip-only mode we only show buttons if they're film-strip only
+    // enabled, so we don't need to update if this isn't the case.
+    if (interfaceConfig.filmStripOnly && !selectedButton.filmStripOnlyEnabled) {
+        return {
+            ...state
+        };
+    }
+
     const updatedToolbar = state[place].set(buttonName, selectedButton);
 
     return {
