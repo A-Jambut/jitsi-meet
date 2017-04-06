@@ -113,13 +113,17 @@ class PrimaryToolbar extends Component {
 
         const { buttonHandlers, splitterIndex } = this.state;
         const { primaryToolbarClassName } = getToolbarClassNames(this.props);
+        const _tooltipPosition = interfaceConfig.filmStripOnly
+            ? 'left'
+            : 'bottom';
 
         return (
             <Toolbar
                 buttonHandlers = { buttonHandlers }
                 className = { primaryToolbarClassName }
                 splitterIndex = { splitterIndex }
-                toolbarButtons = { _primaryToolbarButtons } />
+                toolbarButtons = { _primaryToolbarButtons }
+                tooltipPosition = { _tooltipPosition } />
         );
     }
 }

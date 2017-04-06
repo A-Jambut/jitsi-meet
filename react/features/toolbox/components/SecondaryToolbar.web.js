@@ -167,7 +167,8 @@ class SecondaryToolbar extends Component {
             <Toolbar
                 buttonHandlers = { buttonHandlers }
                 className = { secondaryToolbarClassName }
-                toolbarButtons = { _secondaryToolbarButtons }>
+                toolbarButtons = { _secondaryToolbarButtons }
+                tooltipPosition = { 'right' }>
                 <FeedbackButton />
             </Toolbar>
         );

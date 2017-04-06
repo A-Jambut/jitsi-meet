@@ -60,7 +60,13 @@ class Toolbar extends Component {
         /**
          * Map with toolbar buttons.
          */
-        toolbarButtons: React.PropTypes.instanceOf(Map)
+        toolbarButtons: React.PropTypes.instanceOf(Map),
+
+        /**
+         * Indicates the position of the tooltip. One of the following four
+         * strings are allowed: 'bottom', 'left', 'top', 'right'
+         */
+        tooltipPosition: React.PropTypes.string
     };
 
     /**
@@ -115,7 +121,7 @@ class Toolbar extends Component {
     _renderToolbarButton(acc: Array<*>, keyValuePair: Array<*>,
                          index: number): Array<ReactElement<*>> {
         const [ key, button ] = keyValuePair;
-        const { splitterIndex } = this.props;
+        const { splitterIndex, tooltipPosition } = this.props;
 
         if (splitterIndex && index === splitterIndex) {
             const splitter = <span className = 'toolbar__splitter' />;
@@ -131,7 +137,8 @@ class Toolbar extends Component {
                 key = { key }
                 onClick = { onClick }
                 onMount = { onMount }
-                onUnmount = { onUnmount } />
+                onUnmount = { onUnmount }
+                tooltipPosition = { tooltipPosition } />
         );
 
         return acc;
