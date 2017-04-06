@@ -18,7 +18,7 @@
         flex-wrap: nowrap;
         position: relative;
         z-index: $zindex1;              // Set z-index to make element visible
-        width: $hideFilmstripButtonWidth;
+        width: $filmStripToggleButtonWidth;
 
         button {
             font-size: 14px;
@@ -120,5 +120,14 @@
                 overflow: hidden;
             }
         }
+    }
+
+    /**
+     * Style the film strip videos in film-strip-only mode.
+     */
+    &__videos-filmstripOnly {
+        margin-top: auto;
+        margin-bottom: auto;
+        padding-right: $defaultToolbarSize;
     }
 }
